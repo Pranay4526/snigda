@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snigda Fin - Smart Finance Made Simple</title>
+  <style>
+    /* Logo Styling */
+    .logo {
+      position: fixed;
+      top: -190px;
+      left: -150px;
+      z-index: 1000;
+      padding: 10px;
+      max-width: 100%;  /* Ensure it doesn't overflow */
+      height: auto;
+    }
+
+    .logo img {
+      max-width: 500px;  /* Max width for the logo */
+      max-height: 1200px;  /* Max height for the logo */
+      width: 100%; /* Ensure it scales well */
+      height: auto;
+    }
+
+    /* Gradient background animation */
+    @keyframes gradient {
+      0% {
+        background-position: 0% 0%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+
+    /* Apply background animation */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(315deg, rgba(101, 0, 94, 1) 3%, rgba(60, 132, 206, 1) 38%, rgba(48, 238, 226, 1) 68%, rgba(255, 25, 25, 1) 98%);
+      animation: gradient 15s ease infinite;
+      background-size: 400% 400%;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+
+    .cta-btn {
+      background-color: #e36387;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Hero Title */
+    .hero-title {
+      font-size: 60px;
+      margin: 100px 0;
+      transition: font-size 0.5s ease, margin 0.5s ease;
+    }
+
+    .shrink .hero-title {
+      font-size: 30px;
+      margin: 20px 0;
+    }
+
+    /* Content Section */
+    .content {
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content p {
+      font-size: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Section Styles */
+    section {
+      padding: 50px 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .animated-section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.5s ease-in-out;
+    }
+
+    .animated-section.active {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+
+    /* Additional Sections */
+    .additional-sections {
+      display: flex;
+      justify-content: space-between;
+      margin: 50px 0;
+    }
+
+    .section-box {
+      width: 30%;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .section-box:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .description {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .section-box.open .description {
+      display: block;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      margin: 60px 0;
+      padding: 40px;
+      background-color: #e36387;
+      border-radius: 8px;
+      position: relative;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .newsletter::before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: #e36387;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .newsletter input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+
+    .newsletter button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #e36387;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter button:hover {
+      background-color: #e36387;
+      color: white;
+    }
+
+    /* Footer Section with Rights */
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: white;
+    }
+
+    .footer-container .rights {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    /* FadeIn animation for elements */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Typewriting animation */
+    @keyframes type {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    .typewrite {
+      display: inline-block;
+      width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid rgba(255, 255, 255, 0.75);
+      animation: type 3s steps(30) 1s forwards;
+    }
+
+    /* Media Query for Tablet Screens */
+    @media screen and (max-width: 1024px) {
+      .hero-title {
+        font-size: 50px;
+      }
+
+      .section-box {
+        width: 48%;
+      }
+
+      .additional-sections {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    /* Media Query for Mobile Screens */
+    @media screen and (max-width: 768px) {
+      .hero-title {
+        font-size: 40px;
+        margin: 50px 0;
+      }
+
+      .section-box {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+
+      .additional-sections {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-container .rights {
+        font-size: 14px;
+        margin-top: 20px;
+      }
+
+      /* Logo adjustments for mobile screens */
+      .logo img {
+        max-width: 100px;
+        max-height: 100px;
+      }
+    }
+
+    /* Media Query for Smaller Mobile Screens */
+    @media screen and (max-width: 480px) {
+      .hero-title {
+        font-size: 30px;
+      }
+
+      .cta-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .newsletter input,
+      .newsletter button {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .additional-sections {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-container .rights {
+        font-size: 12px;
+      }
+
+      /* Logo adjustments for small mobile screens */
+      .logo img {
+        max-width: 120px;
+        max-height: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Logo in the top-left corner -->
+  <div class="logo">
+    <img src="logo.png" alt="SniGda Fin Logo">
+  </div>
+
+  <!-- Help Centre button -->
+  <header>
+    <button class="cta-btn help-btn">Help Centre</button>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1 class="hero-title">Welcome to Snigda Fin</h1>
+    <p>Finance made simple, smart, and rewarding.</p>
+  </div>
+
+  <!-- Creating Account Section -->
+  <section class="creating-account animated-section" data-animation="slide-right">
+    <div class="section-content right-side">
+      <h2>Creating Account</h2>
+      <p class="typewrite">Quickly create an account and access smart financing options with flexible repayment terms.</p>
+    </div>
+  </section>
+
+  <!-- KYC & Verification Section -->
+  <section class="kyc-verification animated-section" data-animation="slide-right">
+    <div class="section-content right-side">
+      <h2>KYC & Verification</h2>
+      <p class="typewrite">Complete your KYC and verification process to start using our services securely and efficiently.</p>
+    </div>
+  </section>
+
+  <!-- Rewards Section -->
+  <section class="rewards animated-section" data-animation="slide-up">
+    <div class="section-content">
+      <h2>Rewards Program</h2>
+      <p class="typewrite">Earn rewards on every transaction and redeem them for exciting benefits.</p>
+    </div>
+  </section>
+
+  <!-- Additional Sections -->
+  <div class="additional-sections">
+    <div class="section-box" id="cibil">
+      <h3>CIBIL</h3>
+      <div class="description">
+        <p>Learn how your CIBIL score impacts your creditworthiness and get tailored finance options.</p>
+      </div>
+    </div>
+    <div class="section-box" id="instant-approval">
+      <h3>Instant Approval</h3>
+      <div class="description">
+        <p>Get instant approval for loans and other financial products with minimal paperwork.</p>
+      </div>
+    </div>
+    <div class="section-box" id="spend-analytics">
+      <h3>Spend Analytics</h3>
+      <div class="description">
+        <p>Track your spending and gain insights into your financial habits.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section with Newsletter & Rights -->
+  <div class="footer-container">
+    <div class="newsletter">
+      <h3>Stay Updated with Our Newsletter</h3>
+      <input type="email" id="email-input" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+
+    <div class="rights">
+      <p>&copy; 2025 Snigda Fin. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // Toggle sections
+    document.querySelectorAll('.section-box').forEach(box => {
+      box.addEventListener('click', () => {
+        box.classList.toggle('open');
+      });
+    });
+
+    // Adding animation class when scrolling into view
+    document.addEventListener('scroll', () => {
+      document.querySelectorAll('.animated-section').forEach(section => {
+        if (section.getBoundingClientRect().top < window.innerHeight - 50) {
+          section.classList.add('active');
+        }
+      });
+    });
+
+    // Typewrite effect
+    const elements = document.querySelectorAll('.typewrite');
+    elements.forEach(el => {
+      let text = el.textContent;
+      let i = 0;
+      el.textContent = '';
+      const typing = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i === text.length) clearInterval(typing);
+      }, 100);
+    });
+  </script>
+</body>
+
+</html>
